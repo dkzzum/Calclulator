@@ -1,0 +1,10 @@
+C:\Users\HOME\source\repos\proverka\proverka\bin\Debug\proverka.exe.config
+C:\Users\HOME\source\repos\proverka\proverka\bin\Debug\proverka.exe
+C:\Users\HOME\source\repos\proverka\proverka\bin\Debug\proverka.pdb
+C:\Users\HOME\source\repos\proverka\proverka\obj\Debug\proverka.csproj.AssemblyReference.cache
+C:\Users\HOME\source\repos\proverka\proverka\obj\Debug\proverka.Form1.resources
+C:\Users\HOME\source\repos\proverka\proverka\obj\Debug\proverka.Properties.Resources.resources
+C:\Users\HOME\source\repos\proverka\proverka\obj\Debug\proverka.csproj.GenerateResource.cache
+C:\Users\HOME\source\repos\proverka\proverka\obj\Debug\proverka.csproj.CoreCompileInputs.cache
+C:\Users\HOME\source\repos\proverka\proverka\obj\Debug\proverka.exe
+C:\Users\HOME\source\repos\proverka\proverka\obj\Debug\proverka.pdb
