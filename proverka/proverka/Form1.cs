@@ -10,7 +10,7 @@ namespace proverka
         public double ThirdValiue = 0;
         public string Sing;
         public double Result;
-        int Clear = 0, numbers = 0, count = 0, i = 0;
+        int Clear = 0, numbers = 0, i = 0, count = 0;
 
         public Form1()
         {
@@ -22,7 +22,7 @@ namespace proverka
 
         }
 
-        private void button15_Click(object sender, EventArgs e)
+        private void Button15_Click(object sender, EventArgs e)
         {
             if (Value.Length <= 9)
             {
@@ -138,21 +138,27 @@ namespace proverka
 
         private void button10_Click(object sender, EventArgs e) // ","
         {
-            int index = Value.Length;
-            if (Value.Contains(",") == false)
+            if (!string.IsNullOrWhiteSpace(Value))
             {
-                Value = Value.Insert(index, ",");
-                textBox1.Text = Value;
+                int index = Value.Length;
+                if (Value.Contains(",") == false)
+                {
+                    Value = Value.Insert(index, ",");
+                    textBox1.Text = Value;
+                }
             }
         }
 
         private void button6_Click(object sender, EventArgs e) // "%"
         {
-            SecondValue = Convert.ToDouble(Value);
+            if (!string.IsNullOrWhiteSpace(Value))
+            {
+                SecondValue = Convert.ToDouble(Value);
 
-            Result = SecondValue / 100;
-            Value = Convert.ToString(Result);
-            textBox1.Text = Value;
+                Result = SecondValue / 100;
+                Value = Convert.ToString(Result);
+                textBox1.Text = Value;
+            }
         }
 
 
@@ -176,384 +182,406 @@ namespace proverka
                 Sing = "";
                 numbers = 0;
                 i = 0;
-                count = 0;
             }
         }
 
         private void button4_Click(object sender, EventArgs e) // +
         {
-            if (numbers == 0)
+            if (!string.IsNullOrWhiteSpace(Value))
             {
-                SecondValue = Convert.ToDouble(Value);
-                numbers = 1;
-            }
 
-            if (i >= 1 && string.IsNullOrWhiteSpace(Value) == false)
-            {
-                if (ThirdValiue == 0)
-                {
-                    ThirdValiue = Convert.ToDouble(Value);
-                    if (Sing == "-")
-                    {
-                        Result = SecondValue - ThirdValiue;
-                        Value = " " + Convert.ToString(Result);
-
-                        textBox1.Text = Value;
-                    }
-                    else if (Sing == "*")
-                    {
-                        Result = ThirdValiue * SecondValue;
-                        Value = " " + Convert.ToString(Result);
-
-                        textBox1.Text = Value;
-                    }
-                    else if (Sing == "/")
-                    {
-                        Result = SecondValue / ThirdValiue;
-                        Value = " " + Convert.ToString(Result);
-
-                        textBox1.Text = Value;
-                    }
-                    else if(Sing == "+")
-                    {
-                        ThirdValiue = Convert.ToDouble(Value);
-                        Result = ThirdValiue + SecondValue;
-                        Value = " " + Convert.ToString(Result);
-
-                        textBox1.Text = Value;
-                    }
-                }
-                else
+                if (numbers == 0)
                 {
                     SecondValue = Convert.ToDouble(Value);
-                    if (Sing == "-")
+                    numbers = 1;
+                }
+
+                if (i >= 1 && string.IsNullOrWhiteSpace(Value) == false)
+                {
+                    if (ThirdValiue == 0)
                     {
+                        ThirdValiue = Convert.ToDouble(Value);
+                        if (Sing == "-")
+                        {
+                            Result = SecondValue - ThirdValiue;
+                            Value = " " + Convert.ToString(Result);
 
-                        Result = Result - ThirdValiue;
-                        Value = " " + Convert.ToString(Result);
+                            textBox1.Text = Value;
+                        }
+                        else if (Sing == "*")
+                        {
+                            Result = ThirdValiue * SecondValue;
+                            Value = " " + Convert.ToString(Result);
 
-                        textBox1.Text = Value;
+                            textBox1.Text = Value;
+                        }
+                        else if (Sing == "/")
+                        {
+                            Result = SecondValue / ThirdValiue;
+                            Value = " " + Convert.ToString(Result);
+
+                            textBox1.Text = Value;
+                        }
+                        else if (Sing == "+")
+                        {
+                            ThirdValiue = Convert.ToDouble(Value);
+                            Result = ThirdValiue + SecondValue;
+                            Value = " " + Convert.ToString(Result);
+
+                            textBox1.Text = Value;
+                        }
                     }
-                    else if (Sing == "*")
-                    {
-                        Result = Result * SecondValue;
-                        Value = " " + Convert.ToString(Result);
-
-                        textBox1.Text = Value;
-                    }
-                    else if (Sing == "/")
-                    {
-                        Result = Result / SecondValue;
-                        Value = " " + Convert.ToString(Result);
-
-                        textBox1.Text = Value;
-                    }
-                    else if (Sing == "+")
+                    else
                     {
                         SecondValue = Convert.ToDouble(Value);
-                        Result += SecondValue;
-                        Value = " " + Convert.ToString(Result);
+                        if (Sing == "-")
+                        {
 
-                        textBox1.Text = Value;
+                            Result = Result - ThirdValiue;
+                            Value = " " + Convert.ToString(Result);
+
+                            textBox1.Text = Value;
+                        }
+                        else if (Sing == "*")
+                        {
+                            Result = Result * SecondValue;
+                            Value = " " + Convert.ToString(Result);
+
+                            textBox1.Text = Value;
+                        }
+                        else if (Sing == "/")
+                        {
+                            Result = Result / SecondValue;
+                            Value = " " + Convert.ToString(Result);
+
+                            textBox1.Text = Value;
+                        }
+                        else if (Sing == "+")
+                        {
+                            SecondValue = Convert.ToDouble(Value);
+                            Result += SecondValue;
+                            Value = " " + Convert.ToString(Result);
+
+                            textBox1.Text = Value;
+                        }
                     }
                 }
             }
             i++;
             Sing = "+";
             Value = " ";
-            count = 1;
         }
-
-
 
         private void button3_Click(object sender, EventArgs e) // -
         {
-            if (numbers == 0)
+            if (!string.IsNullOrWhiteSpace(Value))
             {
-                SecondValue = Convert.ToDouble(Value);
-                numbers = 1;
-            }
 
-            if (i >= 1 && string.IsNullOrWhiteSpace(Value) == false)
-            {
-                if (ThirdValiue == 0)
-                {
-                    ThirdValiue = Convert.ToDouble(Value);
-                    if (Sing == "+")
-                    {
-                        Result = SecondValue + ThirdValiue;
-                        Value = " " + Convert.ToString(Result);
-
-                        textBox1.Text = Value;
-                    }
-                    else if (Sing == "*")
-                    {
-                        Result = ThirdValiue * SecondValue;
-                        Value = " " + Convert.ToString(Result);
-
-                        textBox1.Text = Value;
-                    }
-                    else if (Sing == "/")
-                    {
-                        Result = SecondValue / ThirdValiue;
-                        Value = " " + Convert.ToString(Result);
-
-                        textBox1.Text = Value;
-                    }
-                    else if (Sing == "-")
-                    {
-                        Result = ThirdValiue - SecondValue;
-                        Value = " " + Convert.ToString(Result);
-
-                        textBox1.Text = Value;
-                    }
-                }
-                else
+                if (numbers == 0)
                 {
                     SecondValue = Convert.ToDouble(Value);
-                    if (Sing == "+")
-                    {
-                        Result = Result + ThirdValiue;
-                        Value = " " + Convert.ToString(Result);
+                    numbers = 1;
+                }
 
-                        textBox1.Text = Value;
-                    }
-                    else if (Sing == "*")
+                if (i >= 1 && string.IsNullOrWhiteSpace(Value) == false)
+                {
+                    if (ThirdValiue == 0)
                     {
-                        Result = Result * SecondValue;
-                        Value = " " + Convert.ToString(Result);
+                        ThirdValiue = Convert.ToDouble(Value);
+                        if (Sing == "+")
+                        {
+                            Result = SecondValue + ThirdValiue;
+                            Value = " " + Convert.ToString(Result);
 
-                        textBox1.Text = Value;
-                    }
-                    else if (Sing == "/")
-                    {
-                        Result = Result / SecondValue;
-                        Value = " " + Convert.ToString(Result);
+                            textBox1.Text = Value;
+                        }
+                        else if (Sing == "*")
+                        {
+                            Result = ThirdValiue * SecondValue;
+                            Value = " " + Convert.ToString(Result);
 
-                        textBox1.Text = Value;
+                            textBox1.Text = Value;
+                        }
+                        else if (Sing == "/")
+                        {
+                            Result = SecondValue / ThirdValiue;
+                            Value = " " + Convert.ToString(Result);
+
+                            textBox1.Text = Value;
+                        }
+                        else if (Sing == "-")
+                        {
+                            Result = ThirdValiue - SecondValue;
+                            Value = " " + Convert.ToString(Result);
+
+                            textBox1.Text = Value;
+                        }
                     }
-                    else if (Sing == "-")
+                    else
                     {
                         SecondValue = Convert.ToDouble(Value);
-                        Result = Result - SecondValue;
-                        Value = " " + Convert.ToString(Result);
+                        if (Sing == "+")
+                        {
+                            Result = Result + ThirdValiue;
+                            Value = " " + Convert.ToString(Result);
 
-                        textBox1.Text = Value;
+                            textBox1.Text = Value;
+                        }
+                        else if (Sing == "*")
+                        {
+                            Result = Result * SecondValue;
+                            Value = " " + Convert.ToString(Result);
+
+                            textBox1.Text = Value;
+                        }
+                        else if (Sing == "/")
+                        {
+                            Result = Result / SecondValue;
+                            Value = " " + Convert.ToString(Result);
+
+                            textBox1.Text = Value;
+                        }
+                        else if (Sing == "-")
+                        {
+                            SecondValue = Convert.ToDouble(Value);
+                            Result = Result - SecondValue;
+                            Value = " " + Convert.ToString(Result);
+
+                            textBox1.Text = Value;
+                        }
                     }
                 }
             }
-
             Sing = "-";
             Value = " ";
             i++;
-            count = 1;
         }
 
         private void button2_Click(object sender, EventArgs e) // *
         {
-            if (numbers == 0)
+            if (!string.IsNullOrWhiteSpace(Value))
             {
-                SecondValue = Convert.ToDouble(Value);
-                numbers = 1;
-            }
 
-            if (i >= 1 && string.IsNullOrWhiteSpace(Value) == false)
-            {
-                if (ThirdValiue == 0)
-                {
-                    ThirdValiue = Convert.ToDouble(Value);
-                    if (Sing == "-")
-                    {
-                        Result = SecondValue - ThirdValiue;
-                        Value = " " + Convert.ToString(Result);
-
-                        textBox1.Text = Value;
-                    }
-                    else if (Sing == "+")
-                    {
-                        Result = ThirdValiue + SecondValue;
-                        Value = " " + Convert.ToString(Result);
-
-                        textBox1.Text = Value;
-                    }
-                    else if (Sing == "/")
-                    {
-                        Result = SecondValue / ThirdValiue;
-                        Value = " " + Convert.ToString(Result);
-
-                        textBox1.Text = Value;
-                    }
-                    else if (Sing == "*")
-                    {
-                        ThirdValiue = Convert.ToDouble(Value);
-                        Result = ThirdValiue * SecondValue;
-                        Value = " " + Convert.ToString(Result);
-
-                        textBox1.Text = Value;
-                    }
-                }
-                else
+                if (numbers == 0)
                 {
                     SecondValue = Convert.ToDouble(Value);
-                    if (Sing == "-")
+                    numbers = 1;
+                }
+
+                if (i >= 1 && string.IsNullOrWhiteSpace(Value) == false)
+                {
+                    if (ThirdValiue == 0)
                     {
+                        ThirdValiue = Convert.ToDouble(Value);
+                        if (Sing == "-")
+                        {
+                            Result = SecondValue - ThirdValiue;
+                            Value = " " + Convert.ToString(Result);
 
-                        Result = Result - SecondValue;
-                        Value = " " + Convert.ToString(Result);
+                            textBox1.Text = Value;
+                        }
+                        else if (Sing == "+")
+                        {
+                            Result = ThirdValiue + SecondValue;
+                            Value = " " + Convert.ToString(Result);
 
-                        textBox1.Text = Value;
+                            textBox1.Text = Value;
+                        }
+                        else if (Sing == "/")
+                        {
+                            Result = SecondValue / ThirdValiue;
+                            Value = " " + Convert.ToString(Result);
+
+                            textBox1.Text = Value;
+                        }
+                        else if (Sing == "*")
+                        {
+                            ThirdValiue = Convert.ToDouble(Value);
+                            Result = ThirdValiue * SecondValue;
+                            Value = " " + Convert.ToString(Result);
+
+                            textBox1.Text = Value;
+                        }
                     }
-                    else if (Sing == "+")
-                    {
-                        Result = Result + SecondValue;
-                        Value = " " + Convert.ToString(Result);
-
-                        textBox1.Text = Value;
-                    }
-                    else if (Sing == "/")
-                    {
-                        Result = Result / SecondValue;
-                        Value = " " + Convert.ToString(Result);
-
-                        textBox1.Text = Value;
-                    }
-                    else if (Sing == "*")
+                    else
                     {
                         SecondValue = Convert.ToDouble(Value);
-                        Result = Result * SecondValue;
-                        Value = " " + Convert.ToString(Result);
+                        if (Sing == "-")
+                        {
 
-                        textBox1.Text = Value;
+                            Result = Result - SecondValue;
+                            Value = " " + Convert.ToString(Result);
+
+                            textBox1.Text = Value;
+                        }
+                        else if (Sing == "+")
+                        {
+                            Result = Result + SecondValue;
+                            Value = " " + Convert.ToString(Result);
+
+                            textBox1.Text = Value;
+                        }
+                        else if (Sing == "/")
+                        {
+                            Result = Result / SecondValue;
+                            Value = " " + Convert.ToString(Result);
+
+                            textBox1.Text = Value;
+                        }
+                        else if (Sing == "*")
+                        {
+                            SecondValue = Convert.ToDouble(Value);
+                            Result = Result * SecondValue;
+                            Value = " " + Convert.ToString(Result);
+
+                            textBox1.Text = Value;
+                        }
                     }
                 }
             }
             i++;
             Sing = "*";
             Value = " ";
-            count = 1;
         }
 
         private void button1_Click(object sender, EventArgs e) // /
         {
-            if (numbers == 0)
+            if (!string.IsNullOrWhiteSpace(Value))
             {
-                SecondValue = Convert.ToDouble(Value);
-                numbers = 1;
-            }
 
-            if (i >= 1 && string.IsNullOrWhiteSpace(Value) == false)
-            {
-                if (ThirdValiue == 0)
-                {
-                    ThirdValiue = Convert.ToDouble(Value);
-                    if (Sing == "-")
-                    {
-                        Result = SecondValue - ThirdValiue;
-                        Value = " " + Convert.ToString(Result);
-
-                        textBox1.Text = Value;
-                    }
-                    else if (Sing == "+")
-                    {
-                        Result = ThirdValiue + SecondValue;
-                        Value = " " + Convert.ToString(Result);
-
-                        textBox1.Text = Value;
-                    }
-                    else if (Sing == "*")
-                    {
-                        Result = SecondValue * ThirdValiue;
-                        Value = " " + Convert.ToString(Result);
-
-                        textBox1.Text = Value;
-                    }
-                    else if (Sing == "/")
-                    {
-                        ThirdValiue = Convert.ToDouble(Value);
-                        Result = SecondValue / ThirdValiue;
-                        Value = " " + Convert.ToString(Result);
-
-                        textBox1.Text = Value;
-                    }
-                }
-                else
+                if (numbers == 0)
                 {
                     SecondValue = Convert.ToDouble(Value);
-                    if (Sing == "-")
+                    numbers = 1;
+                }
+
+                if (i >= 1 && string.IsNullOrWhiteSpace(Value) == false)
+                {
+                    if (ThirdValiue == 0)
                     {
+                        ThirdValiue = Convert.ToDouble(Value);
+                        if (Sing == "-")
+                        {
+                            Result = SecondValue - ThirdValiue;
+                            Value = " " + Convert.ToString(Result);
 
-                        Result = Result - SecondValue;
-                        Value = " " + Convert.ToString(Result);
+                            textBox1.Text = Value;
+                        }
+                        else if (Sing == "+")
+                        {
+                            Result = ThirdValiue + SecondValue;
+                            Value = " " + Convert.ToString(Result);
 
-                        textBox1.Text = Value;
+                            textBox1.Text = Value;
+                        }
+                        else if (Sing == "*")
+                        {
+                            Result = SecondValue * ThirdValiue;
+                            Value = " " + Convert.ToString(Result);
+
+                            textBox1.Text = Value;
+                        }
+                        else if (Sing == "/")
+                        {
+                            ThirdValiue = Convert.ToDouble(Value);
+                            Result = SecondValue / ThirdValiue;
+                            Value = " " + Convert.ToString(Result);
+
+                            textBox1.Text = Value;
+                        }
                     }
-                    else if (Sing == "+")
-                    {
-                        Result = Result + SecondValue;
-                        Value = " " + Convert.ToString(Result);
-
-                        textBox1.Text = Value;
-                    }
-                    else if (Sing == "*")
-                    {
-                        Result = Result * SecondValue;
-                        Value = " " + Convert.ToString(Result);
-
-                        textBox1.Text = Value;
-                    }
-                    else if (Sing == "/")
+                    else
                     {
                         SecondValue = Convert.ToDouble(Value);
-                        Result = Result / SecondValue;
-                        Value = " " + Convert.ToString(Result);
+                        if (Sing == "-")
+                        {
 
-                        textBox1.Text = Value;
+                            Result = Result - SecondValue;
+                            Value = " " + Convert.ToString(Result);
+
+                            textBox1.Text = Value;
+                        }
+                        else if (Sing == "+")
+                        {
+                            Result = Result + SecondValue;
+                            Value = " " + Convert.ToString(Result);
+
+                            textBox1.Text = Value;
+                        }
+                        else if (Sing == "*")
+                        {
+                            Result = Result * SecondValue;
+                            Value = " " + Convert.ToString(Result);
+
+                            textBox1.Text = Value;
+                        }
+                        else if (Sing == "/")
+                        {
+                            SecondValue = Convert.ToDouble(Value);
+                            Result = Result / SecondValue;
+                            Value = " " + Convert.ToString(Result);
+
+                            textBox1.Text = Value;
+                        }
                     }
                 }
             }
             i++;
             Sing = "/";
             Value = " ";
-            count = 1;
         }
 
         private void button5_Click(object sender, EventArgs e) // =
         {
-            
-                Result = SecondValue;
-                SecondValue = Convert.ToDouble(Value);
-            
-
-
-            if (Sing == "+")
+            if (!string.IsNullOrWhiteSpace(Value))
             {
-                Result = Result + SecondValue;
-                Value = " " + Convert.ToString(Result);
+                if (count == 0)
+                {
+                    SecondValue = Convert.ToDouble(Value);
+                    count++;
+                }
+                else
+                {
+                    Result = SecondValue;
+                    SecondValue = Convert.ToDouble(Value);
+                    count++;
+                }
 
-                textBox1.Text = Value;
+
+                if (Sing == "+")
+                {
+                    Result = Result + SecondValue;
+                    Value = " " + Convert.ToString(Result);
+
+                    textBox1.Text = Value;
+                }
+                else if (Sing == "-")
+                {
+                    Result = Result - SecondValue;
+                    Value = " " + Convert.ToString(Result);
+
+                    textBox1.Text = Value;
+                }
+                else if (Sing == "*")
+                {
+                    Result = Result * SecondValue;
+                    Value = " " + Convert.ToString(Result);
+
+                    textBox1.Text = Value;
+                }
+                else if (Sing == "/")
+                {
+                    Result = Result / SecondValue;
+                    Value = " " + Convert.ToString(Result);
+
+                    textBox1.Text = Value;
+                }
+                Sing = "";
             }
-            else if (Sing == "-")
+            else
             {
-                Result = Result - SecondValue;
-                Value = " " + Convert.ToString(Result);
-
-                textBox1.Text = Value;
+                textBox1.Text = "0";
             }
-            else if (Sing == "*")
-            {
-                Result = Result * SecondValue;
-                Value = " " + Convert.ToString(Result);
-
-                textBox1.Text = Value;
-            }
-            else if (Sing == "/")
-            {
-                Result = Result / SecondValue;
-                Value = " " + Convert.ToString(Result);
-
-                textBox1.Text = Value;
-            }
-            Sing = "";
         }
     }
 }
